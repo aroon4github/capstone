@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-deployment
-  labels:
-    role: app
+  name: hello-blue-whale
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      role: app
+      app: hello-whale-app
+      version: blue
   template:
     metadata:
+      name: hello-blue-whale-pod
       labels:
-        role: app
+        app: hello-whale-app
+        version: blue
     spec:
       containers:
-      - name: app
-        image: ""
-        resources:
-          requests:
-            cpu: 10m
+      - name: hello-whale-container
+        image: vamsijakkula/hellowhale:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
