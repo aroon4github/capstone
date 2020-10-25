@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-blue-whale
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: hello-whale-app
+      version: blue
+  template:
+    metadata:
+      name: hello-blue-whale-pod
+      labels:
+        app: hello-whale-app
+        version: blue
+    spec:
+      containers:
+      - name: hello-whale-container
+        image: aroon4docker/capstone-whale:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
