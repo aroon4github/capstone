@@ -1,15 +1,13 @@
 apiVersion: v1
-kind: Service 
+kind: Service
 metadata:
-  name: hello-whale-svc
-  labels:
-    app: hello-whale-app
+  name: hello-svc
 spec:
   selector:
-    app: hello-whale-app
-    version: blue
-  type: NodePort
+    role: app
   ports:
-  - nodePort: 31113
-    port: 80
-    targetPort: 80
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 32000
+  type: NodePort
