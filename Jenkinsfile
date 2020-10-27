@@ -33,8 +33,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          def image_id = registry + ":$BUILD_NUMBER"
-                   sh "ansible-playbook  hellowhale.yml --extra-vars \"image_id=${image_id}\""
+          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "mykubeconfig")
         }
       }
     }
