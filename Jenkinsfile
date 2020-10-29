@@ -9,6 +9,11 @@ pipeline {
         git url:'https://github.com/aroon4github/capstone.git', branch:'main'
       }
     }
+     stage('Lint HTML') {
+              steps {
+                  sh 'tidy -q -e *.html'
+              }
+         }
     
       stage("Build image") {
             steps {
